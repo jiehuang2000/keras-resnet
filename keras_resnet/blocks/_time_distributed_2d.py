@@ -144,7 +144,7 @@ def time_distributed_bottleneck_2d(filters, stage=0, block=0, kernel_size=3, num
 
         if block == 0:
             shortcut = keras.layers.TimeDistributed(keras.layers.Conv2D(filters * 4, (1, 1), strides=stride, use_bias=False, **parameters), name="res{}{}_branch1".format(stage_char, block_char))(x)
-            shortcut = keras.layers.TimeDistributed(keras.layers.BatchNormalization(axis=axis, epsilon=1e-5, freeze=freeze_bn), name="bn{}{}_branch1".format(stage_char, block_char))(shortcut)
+            shortcut = keras.layers.TimeDistributed(keras_resnet.layers.BatchNormalization(axis=axis, epsilon=1e-5, freeze=freeze_bn), name="bn{}{}_branch1".format(stage_char, block_char))(shortcut)
         else:
             shortcut = x
 
